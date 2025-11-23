@@ -53,6 +53,10 @@ html, body {
   text-decoration: underline;
 }
 
+#camera-start:hover {
+  cursor: pointer;
+}
+
 #camera {
   position: absolute;
   top: 0;
