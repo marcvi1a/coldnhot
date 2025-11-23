@@ -44,7 +44,8 @@ html, body {
 
 /* Call-to-action button */
 #camera-start {
-  padding: 20px;
+  max-width: 70%;
+  padding: 10px;
   font-size: 20px;
   background: rgba(255,255,255,0.9);
   border: none;
