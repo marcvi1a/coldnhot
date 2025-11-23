@@ -130,3 +130,18 @@ button:hover {
   flex: 1;
   height: 4rem;
 }
+
+#start-container {
+  margin-top: 0.75rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#start {
+  background: #378de2;
+  color: #fff;
+  font-size: 7rem;
+  font-family: monospace;
+  text-align: center;
+}
