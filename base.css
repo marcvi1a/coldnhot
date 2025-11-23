@@ -18,17 +18,15 @@ button:hover {
   overflow: hidden;
 
   /* background: #f2efea; */
-  background: linear-gradient(180deg, #378de2, #ef0241, #378de2);
-  background: linear-gradient(180deg, #378de2, #ef0241, #378de2);
-  background-size: 100% 300%;
-  background-repeat: repeat-y;
+  background: linear-gradient(180deg, #378de2, #ef0241, #378de2, #ef0241, #378de2, #ef0241, #378de2, #ef0241, #378de2);
+  background-size: 100% 1200%;
 
-  animation: gradient-move 10s linear infinite;
+  animation: gradient-move 48s linear infinite;
 }
 
-@keyframes gradient-move {
-  0%   { background-position: 0% 0%, 0% 100%; }
-  100% { background-position: 0% 100%, 0% 200%; }
+@keyframes scroll {
+  from { background-position: 50% 0%; }
+  to   { background-position: 50% 100%; }
 }
 
 #app-padding {
