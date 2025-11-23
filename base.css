@@ -52,6 +52,10 @@ html, body {
   border-radius: 10px;
 }
 
+#camera-start span {
+  color: #0000EE;
+}
+
 #camera {
   position: absolute;
   top: 0;
