@@ -84,3 +84,7 @@ html, body {
 
   /* filter: blur(10px); */
 }
+
+#camera-controls button:hover {
+  cursor: pointer;
+}
