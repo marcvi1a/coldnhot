@@ -37,6 +37,15 @@ if (storedMode === "ice-bath") {
 
 const TIME_TIMER = 0; // always 0
 
+const SINGLE_STEP_SAUNA = 60;
+const SINGLE_STEP_ICE_BATH = 10;
+
+const DOUBLE_STEP_SAUNA = 180;
+const DOUBLE_STEP_ICE_BATH = 40;
+
+const MAX_SAUNA = 3600;
+const MAX_ICE_BATH = 600;
+
 // Initialize both countdown values if empty
 if (!localStorage.getItem("time-countdown-sauna")) {
   localStorage.setItem("time-countdown-sauna", "600");
@@ -51,13 +60,6 @@ const buttonCountdown = document.getElementById("time-controls__countdown");
 
 const buttonLess = document.getElementById("time-controls__less");
 const buttonMore = document.getElementById("time-controls__more");
-
-const SINGLE_STEP_SAUNA = 60;
-const SINGLE_STEP_ICE = 10;
-
-const DOUBLE_STEP_SAUNA = 300;
-const DOUBLE_STEP_ICE = 60;
-
 
 function getMode() {
   return localStorage.getItem("mode") === "sauna" ? "sauna" : "ice-bath";
@@ -84,13 +86,17 @@ function setActiveCountdown(value) {
 function getSingleStep() {
   return getMode() === "sauna"
     ? SINGLE_STEP_SAUNA
-    : SINGLE_STEP_ICE;
+    : SINGLE_STEP_ICE_BATH;
 }
 
 function getDoubleStep() {
   return getMode() === "sauna"
     ? DOUBLE_STEP_SAUNA
-    : DOUBLE_STEP_ICE;
+    : DOUBLE_STEP_ICE_BATH;
+}
+
+function getMaxTime() {
+  return getMode() === "sauna" ? MAX_SAUNA : MAX_ICE_BATH;
 }
 
 function updateTimeControls() {
@@ -208,7 +214,7 @@ buttonLess.addEventListener("dblclick", () => {
 
 buttonMore.addEventListener("click", () => {
   let value = getActiveCountdown();
-  value = value + getSingleStep();
+  value = Math.min(getMaxTime(), value + getSingleStep());
   setActiveCountdown(value);
   updateTimeControls();
 });
@@ -216,6 +222,7 @@ buttonMore.addEventListener("click", () => {
 buttonMore.addEventListener("dblclick", () => {
   let value = getActiveCountdown();
   value = value + getDoubleStep();
+  value = Math.min(getMaxTime(), value + getDoubleStep());
   setActiveCountdown(value);
   updateTimeControls();
 });
