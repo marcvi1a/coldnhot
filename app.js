@@ -221,7 +221,6 @@ buttonMore.addEventListener("click", () => {
 
 buttonMore.addEventListener("dblclick", () => {
   let value = getActiveCountdown();
-  value = value + getDoubleStep();
   value = Math.min(getMaxTime(), value + getDoubleStep());
   setActiveCountdown(value);
   updateTimeControls();
