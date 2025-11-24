@@ -1,6 +1,6 @@
 const appTitleText = document.getElementById("app-title-text");
 
-const APP_TITLE_SAUNA = "Beauty and the heat";
+const APP_TITLE_SAUNA = "Brrreak your limits!";
 const APP_TITLE_ICE_BATH = "Brrreak your limits!";
 
 
@@ -45,15 +45,13 @@ if (storedMode === "ice-bath") {
 
 // --- Time settings ---
 
-const TIME_TIMER = 0; // always 0
-
 const SINGLE_STEP_SAUNA = 60;
 const SINGLE_STEP_ICE_BATH = 10;
 
 const DOUBLE_STEP_SAUNA = 180;
 const DOUBLE_STEP_ICE_BATH = 40;
 
-const MAX_SAUNA = 3600;
+const MAX_SAUNA = 1800;
 const MAX_ICE_BATH = 600;
 
 // Initialize both countdown values if empty
@@ -65,14 +63,26 @@ if (!localStorage.getItem("time-countdown-ice-bath")) {
   localStorage.setItem("time-countdown-ice-bath", "60");
 }
 
-const buttonTimer = document.getElementById("time-controls__timer");
-const buttonCountdown = document.getElementById("time-controls__countdown");
-
-const buttonLess = document.getElementById("time-controls__less");
-const buttonMore = document.getElementById("time-controls__more");
+const timeSlider = document.getElementById("time-slider");
 
 function getMode() {
   return localStorage.getItem("mode") === "sauna" ? "sauna" : "ice-bath";
+}
+
+function getSliderSettings() {
+  if (getMode() === "sauna") {
+    return { min: 0, max: 1800, step: 60, key: "time-countdown-sauna" };
+  }
+  return { min: 0, max: 600, step: 10, key: "time-countdown-ice-bath" };
+}
+
+function applySliderSettings() {
+  const { min, max, step, key } = getSliderSettings();
+  timeSlider.min = min;
+  timeSlider.max = max;
+  timeSlider.step = step;
+  timeSlider.value = localStorage.getItem(key) || step;
+  timeDisplay.textContent = formatTime(parseInt(timeSlider.value, 10));
 }
 
 function getActiveCountdown() {
@@ -93,57 +103,14 @@ function setActiveCountdown(value) {
   }
 }
 
-function getSingleStep() {
-  return getMode() === "sauna"
-    ? SINGLE_STEP_SAUNA
-    : SINGLE_STEP_ICE_BATH;
-}
-
-function getDoubleStep() {
-  return getMode() === "sauna"
-    ? DOUBLE_STEP_SAUNA
-    : DOUBLE_STEP_ICE_BATH;
-}
-
 function getMaxTime() {
   return getMode() === "sauna" ? MAX_SAUNA : MAX_ICE_BATH;
-}
-
-function updateTimeControls() {
-  if (buttonTimer.classList.contains("selected")) {
-    // Timer mode → always 0
-    timeDisplay.textContent = formatTime(TIME_TIMER);
-    buttonLess.disabled = true;
-    buttonMore.disabled = true;
-  } else {
-    // Countdown mode for the selected mode (sauna / ice bath)
-    timeDisplay.textContent = formatTime(getActiveCountdown());
-    buttonLess.disabled = false;
-    buttonMore.disabled = false;
-  }
 }
 
 function formatTime(seconds) {
   const m = String(Math.floor(seconds / 60)).padStart(2, "0");
   const s = String(seconds % 60).padStart(2, "0");
   return `${m}:${s}`;
-}
-
-// --- Initialize time mode (timer or countdown) ---
-if (!localStorage.getItem("time-mode")) {
-  localStorage.setItem("time-mode", "countdown");
-}
-
-const storedTimeMode = localStorage.getItem("time-mode");
-
-// Apply stored time mode
-if (storedTimeMode === "timer") {
-  buttonTimer.classList.add("selected");
-  buttonCountdown.classList.remove("selected");
-} else {
-  // default: countdown
-  buttonCountdown.classList.add("selected");
-  buttonTimer.classList.remove("selected");
 }
 
 
@@ -182,7 +149,7 @@ saunaButton.addEventListener("click", () => {
   appTitleText.style.color = COLOR_SAUNA;
 
   localStorage.setItem("mode", "sauna");
-  updateTimeControls();
+  applySliderSettings();
 });
 
 iceBathButton.addEventListener("click", () => {
@@ -194,53 +161,17 @@ iceBathButton.addEventListener("click", () => {
   appTitleText.style.color = COLOR_ICE_BATH;
 
   localStorage.setItem("mode", "ice-bath");
-  updateTimeControls();
+  applySliderSettings();
 });
 
 
-buttonTimer.addEventListener("click", () => {
-  buttonTimer.classList.add("selected");
-  buttonCountdown.classList.remove("selected");
-  localStorage.setItem("time-mode", "timer");
-  updateTimeControls();
-});
-
-buttonCountdown.addEventListener("click", () => {
-  buttonCountdown.classList.add("selected");
-  buttonTimer.classList.remove("selected");
-  localStorage.setItem("time-mode", "countdown");
-  updateTimeControls();
-});
-
-buttonLess.addEventListener("click", () => {
-  let value = getActiveCountdown();
-  value = Math.max(0, value - getSingleStep());
-  setActiveCountdown(value);
-  updateTimeControls();
-});
-
-buttonLess.addEventListener("dblclick", () => {
-  let value = getActiveCountdown();
-  value = Math.max(0, value - getDoubleStep());
-  setActiveCountdown(value);
-  updateTimeControls();
-});
-
-buttonMore.addEventListener("click", () => {
-  let value = getActiveCountdown();
-  value = Math.min(getMaxTime(), value + getSingleStep());
-  setActiveCountdown(value);
-  updateTimeControls();
-});
-
-buttonMore.addEventListener("dblclick", () => {
-  let value = getActiveCountdown();
-  value = Math.min(getMaxTime(), value + getDoubleStep());
-  setActiveCountdown(value);
-  updateTimeControls();
+timeSlider.addEventListener("input", () => {
+  const { key } = getSliderSettings();
+  localStorage.setItem(key, timeSlider.value);
+  timeDisplay.textContent = formatTime(parseInt(timeSlider.value, 10));
 });
 
 
 
 
-updateTimeControls();
+applySliderSettings();

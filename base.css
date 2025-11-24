@@ -136,17 +136,27 @@ button:disabled {
   justify-content: space-between
 }
 
-#time-controls .level-1 {
-  flex: 1;
-  height: 4rem;
+#time-slider {
+  width: 100%;
+  margin-top: 1rem;
+  appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: #ddd;
 }
 
-.time-controls__group {
-  display: flex;
+#time-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid currentColor;
+  cursor: pointer;
 }
 
-#time-controls .level-2 {
-  flex: 1;
+#time-slider:active::-webkit-slider-thumb {
+  transform: scale(1.1);
 }
 
 #start-container {

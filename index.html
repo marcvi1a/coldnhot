@@ -57,20 +57,7 @@
       <div id="time-container" class="container">
         <!-- Time controls -->
         <div id="time-controls">
-          <button id="time-controls__timer" class="level-1">
-            Timer
-          </button>
-          <button id="time-controls__countdown" class="level-1">
-            Countdown
-          </button>
-          <div class="level-1 time-controls__group">
-            <button id="time-controls__less" class="level-2">
-              -
-            </button>
-            <button id="time-controls__more" class="level-2">
-              +
-            </button>
-          </div>
+          <input type="range" id="time-slider" min="0" max="600" step="10" value="60" />
         </div>
         <!-- Time window -->
         <div id="time-display"></div>
