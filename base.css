@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   overflow: hidden;
   background: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 button:hover {
@@ -35,7 +36,8 @@ button:disabled {
 }
 
 #app-title {
-  font-size: 4rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -120,9 +122,9 @@ button:disabled {
 }
 
 #time-display {
-  color: #fff;
+  font-family: "Roboto Mono", monospace;
   font-size: 7rem;
-  font-family: monospace;
+  color: #fff;
   text-align: center;
 }
 
