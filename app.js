@@ -30,7 +30,7 @@ if (storedMode === "sauna") {
   timeDisplay.style.background = COLOR_SAUNA;
   startButton.style.background = COLOR_SAUNA;
   appTitleText.textContent = APP_TITLE_SAUNA;
-  appTitleText.style.background = COLOR_SAUNA;
+  appTitleText.style.color = COLOR_SAUNA;
 }
 
 if (storedMode === "ice-bath") {
@@ -39,7 +39,7 @@ if (storedMode === "ice-bath") {
   timeDisplay.style.background = COLOR_ICE_BATH;
   startButton.style.background = COLOR_ICE_BATH;
   appTitleText.textContent = APP_TITLE_ICE_BATH;
-  appTitleText.style.background = COLOR_ICE_BATH;
+  appTitleText.style.color = COLOR_ICE_BATH;
 }
 
 
@@ -179,7 +179,7 @@ saunaButton.addEventListener("click", () => {
   timeDisplay.style.background = COLOR_SAUNA;
   startButton.style.background = COLOR_SAUNA;
   appTitleText.textContent = APP_TITLE_SAUNA;
-  appTitleText.style.background = COLOR_SAUNA;
+  appTitleText.style.color = COLOR_SAUNA;
 
   localStorage.setItem("mode", "sauna");
   updateTimeControls();
@@ -191,7 +191,7 @@ iceBathButton.addEventListener("click", () => {
   timeDisplay.style.background = COLOR_ICE_BATH;
   startButton.style.background = COLOR_ICE_BATH;
   appTitleText.textContent = APP_TITLE_ICE_BATH;
-  appTitleText.style.background = COLOR_ICE_BATH;
+  appTitleText.style.color = COLOR_ICE_BATH;
 
   localStorage.setItem("mode", "ice-bath");
   updateTimeControls();
