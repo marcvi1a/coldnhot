@@ -7,6 +7,7 @@ const APP_TITLE_ICE_BATH = "Brrreak your limits!";
 const cameraPreview = document.getElementById("camera-preview");
 const cameraStart = document.getElementById("camera-start");
 const camera = document.getElementById("camera");
+const switchCameraButton = document.getElementById("switch-camera-button");
 
 let currentFacingMode = "user";
 let cameraStream = null;
@@ -121,19 +122,19 @@ async function startCamera() {
     camera.style.display = "block";
 
     // Show the reverse-camera button once camera is active
-    switchCameraBtn.style.display = "flex";
+    switchCameraButton.style.display = "flex";
   } catch (err) {
     alert("Camera permission denied or unavailable.");
     console.error(err);
 
     // Hide button if camera fails
-    switchCameraBtn.style.display = "none";
+    switchCameraButton.style.display = "none";
   }
 }
 
 cameraStart.addEventListener("click", startCamera);
 
-switchCameraBtn.addEventListener("click", async () => {
+switchCameraButton.addEventListener("click", async () => {
   currentFacingMode =
     currentFacingMode === "user" ? "environment" : "user";
   await startCamera();

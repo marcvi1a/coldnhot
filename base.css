@@ -93,7 +93,7 @@ button:disabled {
 }
 
 /* Switch camera button (top-right) */
-#switch-camera-btn {
+#switch-camera-button {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
