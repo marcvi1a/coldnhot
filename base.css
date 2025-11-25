@@ -87,9 +87,13 @@ button:disabled {
 
 /* Wrapper to hold video + switch button */
 #camera-wrapper {
-  position: relative;
-  width: 100%;
+  aspect-ratio: 9 / 16;
   height: 100%;
+
+  object-fit: cover;
+  background: #000;
+  display: none; /* hidden until permission granted */
+
 }
 
 /* Switch camera button (top-right) */
@@ -116,12 +120,6 @@ button:disabled {
 }
 
 #camera {
-  aspect-ratio: 9 / 16;
-  height: 100%;
-
-  object-fit: cover;
-  background: #000;
-  display: none; /* hidden until permission granted */
 }
 
 #camera-controls {
