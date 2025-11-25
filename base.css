@@ -154,6 +154,7 @@ button:disabled {
   appearance: none;
   width: 32px;
   height: 32px;
+  margin-top: -12px;
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
@@ -162,7 +163,7 @@ button:disabled {
   border: none;
 
   /* new dynamic shadow */
-  box-shadow: 0 0 12px var(--slider-color);
+  box-shadow: 0 0 12px #171a1c;
 }
 
 #time-slider:active::-webkit-slider-thumb {
