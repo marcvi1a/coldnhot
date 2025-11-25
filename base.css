@@ -139,15 +139,14 @@ button:disabled {
   appearance: none;
   height: 8px;
   border-radius: 4px;
-  background: #ddd;
-  --slider-color: #fff; /* default fallback */
+  background: #dfdfdf; /* fallback */
 }
 
 /* slider track */
 #time-slider::-webkit-slider-runnable-track {
   height: 8px;
   border-radius: 4px;
-  background: var(--slider-color);
+  background: transparent;  /* JS controls actual background */
 }
 
 #time-slider::-webkit-slider-thumb {
@@ -163,7 +162,7 @@ button:disabled {
   border: none;
 
   /* new dynamic shadow */
-  box-shadow: 0 0 12px #171a1c;
+  box-shadow: 0 0 12px #dfdfdf;
 }
 
 #time-slider:active::-webkit-slider-thumb {

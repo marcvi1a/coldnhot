@@ -72,12 +72,26 @@ function applySliderSettings() {
   timeSlider.step = step;
   timeSlider.value = localStorage.getItem(key) || step;
   timeDisplay.textContent = formatTime(parseInt(timeSlider.value, 10));
+  updateSliderFill();
 }
 
 function updateSliderColor() {
   const mode = getMode();
   const color = mode === "sauna" ? COLOR_SAUNA : COLOR_ICE_BATH;
   timeSlider.style.setProperty("--slider-color", color);
+}
+
+function updateSliderFill() {
+  const value = (timeSlider.value - timeSlider.min) / (timeSlider.max - timeSlider.min) * 100;
+
+  // mode color already coming from CSS variable
+  const color = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE_BATH;
+
+  timeSlider.style.background = `
+    linear-gradient(90deg,
+      ${color} ${value}%,
+      #dfdfdf ${value}%)
+  `;
 }
 
 function formatTime(seconds) {
