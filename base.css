@@ -94,7 +94,7 @@ button:disabled {
   display: none; /* hidden until permission granted */
 }
 
-#camera-controls {
+#bullet-points {
   flex: 1; /* takes up leftover width */
   height: 100%;
 
@@ -103,6 +103,15 @@ button:disabled {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  list-style: none;
+  padding-left: 0;
+}
+
+#bullet-points ul {
+  list-style: none;
+  padding-left: 0;   /* also removes left indentation */
+  margin-left: 0;
 }
 
 #time-container {
