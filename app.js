@@ -18,7 +18,7 @@ const bulletPoint5 = document.getElementById("bullet-point-5");
 
 const BULLET_TITLE_SAUNA = "Sauna";
 const BULLET_TITLE_ICE_BATH = "Gelo";
-const BULLET_POINT_1_SAUNA = "p1";
+const BULLET_POINT_1_SAUNA = "Temperatura acima de 60 ºC";
 const BULLET_POINT_1_ICE_BATH = "Água abaixo de 15 ºC";
 const BULLET_POINT_2_SAUNA = "p2";
 const BULLET_POINT_2_ICE_BATH = "Min 1 min para aumentar adrenalina e dopamina";
@@ -27,7 +27,9 @@ const BULLET_POINT_3_ICE_BATH = "Max 3 min de imersão completa até o pescoço"
 const BULLET_POINT_4_SAUNA = "p4";
 const BULLET_POINT_4_ICE_BATH = "Até 10 min só pernas para recuperação muscular";
 const BULLET_POINT_5_SAUNA = "p5";
-const BULLET_POINT_5_ICE_BATH = "<a href='https://gelohealth.com.br/primeiro' target='_blank'>Dicas primeiro mergulho</a>";
+const BULLET_POINT_5_ICE_BATH = "11 min totais por semana com 3 a 5 mergulhos.";
+const BULLET_POINT_6_SAUNA = "p6";
+const BULLET_POINT_6_ICE_BATH = "<a href='https://gelohealth.com.br/primeiro' target='_blank'>Dicas primeiro mergulho</a>";
 
 
 const saunaButton = document.getElementById("menu-controls__sauna");
@@ -55,7 +57,8 @@ if (storedMode === "sauna") {
   bulletPoint2.textContent = BULLET_POINT_2_SAUNA;
   bulletPoint3.textContent = BULLET_POINT_3_SAUNA;
   bulletPoint4.textContent = BULLET_POINT_4_SAUNA;
-  bulletPoint5.innerHTML = BULLET_POINT_5_SAUNA;
+  bulletPoint5.textContent = BULLET_POINT_5_SAUNA;
+  bulletPoint5.innerHTML = BULLET_POINT_6_SAUNA;
 }
 
 if (storedMode === "ice-bath") {
@@ -68,7 +71,8 @@ if (storedMode === "ice-bath") {
   bulletPoint2.textContent = BULLET_POINT_2_ICE_BATH;
   bulletPoint3.textContent = BULLET_POINT_3_ICE_BATH;
   bulletPoint4.textContent = BULLET_POINT_4_ICE_BATH;
-  bulletPoint5.innerHTML = BULLET_POINT_5_ICE_BATH;
+  bulletPoint5.textContent = BULLET_POINT_5_ICE_BATH;
+  bulletPoint5.innerHTML = BULLET_POINT_6_ICE_BATH;
 }
 
 
@@ -160,7 +164,8 @@ saunaButton.addEventListener("click", () => {
   bulletPoint2.textContent = BULLET_POINT_2_SAUNA;
   bulletPoint3.textContent = BULLET_POINT_3_SAUNA;
   bulletPoint4.textContent = BULLET_POINT_4_SAUNA;
-  bulletPoint5.innerHTML = BULLET_POINT_5_SAUNA;
+  bulletPoint5.textContent = BULLET_POINT_5_SAUNA;
+  bulletPoint5.innerHTML = BULLET_POINT_6_SAUNA;
 
   localStorage.setItem("mode", "sauna");
   applySliderSettings();
@@ -178,7 +183,8 @@ iceBathButton.addEventListener("click", () => {
   bulletPoint2.textContent = BULLET_POINT_2_ICE_BATH;
   bulletPoint3.textContent = BULLET_POINT_3_ICE_BATH;
   bulletPoint4.textContent = BULLET_POINT_4_ICE_BATH;
-  bulletPoint5.innerHTML = BULLET_POINT_5_ICE_BATH;
+  bulletPoint5.textContent = BULLET_POINT_5_ICE_BATH;
+  bulletPoint5.innerHTML = BULLET_POINT_6_ICE_BATH;
 
   localStorage.setItem("mode", "ice-bath");
   applySliderSettings();
