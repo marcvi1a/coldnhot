@@ -1,6 +1,8 @@
 {
-  "title_sauna": "Sauna",
-  "title_ice": "Gelo",
+  "cameraStart": "Abrir câmera",
+
+  "bulletTitle_sauna": "Sauna",
+  "bulletTitle_ice": "Gelo",
 
   "bulletPoint1_sauna": "Entre 70 ºC e 100 ºC",
   "bulletPoint1_ice": "Água abaixo de 15 ºC",
@@ -20,7 +22,7 @@
   "bulletPoint6_sauna": "Combine com luz vermelha para melhorar saúde da pele",
   "bulletPoint6_ice": "<a href='https://gelohealth.com.br/primeiro' target='_blank'>Dicas primeiro mergulho</a>",
 
-  "start": "Start",
-  "sauna": "Sauna",
-  "ice": "Gelo"
+  "startButton": "Start",
+  "saunaButton": "Sauna",
+  "iceButton": "Gelo"
 }
