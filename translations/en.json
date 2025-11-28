@@ -1,6 +1,8 @@
 {
-  "title_sauna": "Sauna",
-  "title_ice": "Ice",
+  "cameraStart": "Allow camera",
+
+  "bulletTitle_sauna": "Sauna",
+  "bulletTitle_ice": "Ice",
 
   "bulletPoint1_sauna": "Between 70 ºC and 100 ºC",
   "bulletPoint1_ice": "Water below 15 ºC",
@@ -20,7 +22,7 @@
   "bulletPoint6_sauna": "Combine com luz vermelha para melhorar saúde da pele",
   "bulletPoint6_ice": "<a href='https://gelohealth.com.br/primeiro' target='_blank'>First-time tips</a>",
 
-  "start": "Start",
-  "sauna": "Sauna",
-  "ice": "Ice"
+  "startButton": "Start",
+  "saunaButton": "Sauna",
+  "iceButton": "Ice"
 }
