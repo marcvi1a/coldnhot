@@ -35,14 +35,6 @@ button:disabled {
   height: 100%;
 }
 
-#app-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-
-  line-height: 1rem;
-  margin-top: -0.75rem;
-}
-
 /* Center on desktop */
 @media (min-width: 800px) {
   body {
@@ -52,12 +44,34 @@ button:disabled {
   }
 }
 
+#app-header {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+
+  line-height: 1rem;
+  margin-top: -0.75rem;
+}
+
 .color__sauna {
   color: #ef0241;
 }
 
 .color__ice-bath {
   color: #378de2;
+}
+
+#lang-select {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+
+  background: #fff;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+
+  font-family: 'Montserrat', sans-serif;
 }
 
 #camera-container {
