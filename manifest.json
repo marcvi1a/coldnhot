@@ -1,7 +1,8 @@
 {
   "name": "ColdnHot",
   "short_name": "ColdnHot",
-  "start_url": "coldnhot.app",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000",
