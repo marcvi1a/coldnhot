@@ -254,6 +254,15 @@ function beginMainTimer() {
   };
 }
 
+function resetToMainScreen() {
+  countdownScreen.style.display = "none";
+  document.getElementById("time-container").style.display = "flex";
+  document.getElementById("camera-container").style.height = "45%";
+
+  startButton.textContent = "Start";
+  countdownTimer.style.color = "#171a1c";
+}
+
 
 
 
