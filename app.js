@@ -206,19 +206,28 @@ iceButton.addEventListener("click", () => {
 });
 
 
-startButton.addEventListener("click", startSession);
+let state = "idle"; // idle | countdown | running
+let countdownInterval;
+let mainInterval;
+let time = 0;
 
-function startSession() {
-  // hide existing UI
-  bulletPoints.style.display = "none";
-  timeDisplay.style.display = "none";
-  timeControls.style.display = "none";
-  timeCountdown.style.display = "flex";
+startButton.addEventListener("click", handleStartStop);
+
+function handleStartStop() {
+  if (state === "idle") startCountdown();
+  else if (state === "running") stopSession();
+}
+
+function startCountdown() {
+  state = "countdown";
+
+  hideMainUI();
+  startButton.textContent = "STOP";
 
   let countdown = 10;
   timeCountdown.textContent = countdown;
 
-  const countdownInterval = setInterval(() => {
+  countdownInterval = setInterval(() => {
     countdown--;
     timeCountdown.textContent = countdown;
 
@@ -230,49 +239,46 @@ function startSession() {
 }
 
 function beginMainTimer() {
-  let time = 0;
+  state = "running";
+  time = 0;
   const endTime = parseInt(timeSlider.value, 10);
   let finishedMark = false;
 
-  timeCountdown.textContent = formatTime(time);
-
-  const mainInterval = setInterval(() => {
+  mainInterval = setInterval(() => {
     time++;
-
     timeCountdown.textContent = formatTime(time);
 
-    // When reaches goal time, change color but keep counting
     if (!finishedMark && time >= endTime) {
       finishedMark = true;
       timeCountdown.style.color = "red";
     }
   }, 1000);
-
-  // Replace the Start button with STOP
-  startButton.textContent = "STOP";
-
-  startButton.removeEventListener("click", startSession);
-  startButton.addEventListener("click", stopSession);
 }
 
 function stopSession() {
+  state = "idle";
+
+  clearInterval(countdownInterval);
   clearInterval(mainInterval);
-  resetToMainScreen();
 
+  showMainUI();
   startButton.textContent = "START";
-
-  startButton.removeEventListener("click", stopSession);
-  startButton.addEventListener("click", startSession);
+  timeCountdown.style.color = "#171a1c";
 }
 
-function resetToMainScreen() {
+
+function hideMainUI() {
+  bulletPoints.style.display = "none";
+  timeDisplay.style.display = "none";
+  timeControls.style.display = "none";
+  timeCountdown.style.display = "flex";
+}
+
+function showMainUI() {
   bulletPoints.style.display = "flex";
   timeDisplay.style.display = "flex";
   timeControls.style.display = "flex";
   timeCountdown.style.display = "none";
-
-  startButton.textContent = "Start";
-  timeCountdown.style.color = "#171a1c";
 }
 
 
