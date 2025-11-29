@@ -121,11 +121,6 @@ button:disabled {
 }
 
 #camera-start {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%)
-
   padding: 1rem 1.3rem;
   font-size: 1rem;
   background: rgba(255,255,255,0.9);
@@ -145,9 +140,9 @@ button:disabled {
   display: flex;
   flex-direction: column;
   overflow: visible;
-  margin-top: 0.75rem;
 
   margin-top: auto; /* pushes it down */
+  margin-bottom: 8rem;
 }
 
 #time-display {
