@@ -231,7 +231,7 @@ function startCountdown() {
     countdown--;
     timeCountdown.textContent = countdown;
 
-    if (countdown <= 0) {
+    if (countdown <= 1) {
       clearInterval(countdownInterval);
       beginMainTimer();
     }
