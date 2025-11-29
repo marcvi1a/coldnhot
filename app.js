@@ -226,6 +226,34 @@ function startSession() {
   }, 1000);
 }
 
+function beginMainTimer() {
+  let time = 0;
+  const endTime = parseInt(timeSlider.value, 10);
+  let finishedMark = false;
+
+  countdownTimer.textContent = formatTime(time);
+
+  const mainInterval = setInterval(() => {
+    time++;
+
+    countdownTimer.textContent = formatTime(time);
+
+    // When reaches goal time, change color but keep counting
+    if (!finishedMark && time >= endTime) {
+      finishedMark = true;
+      countdownTimer.style.color = "red";
+    }
+  }, 1000);
+
+  // Replace the Start button with STOP
+  startButton.textContent = "STOP";
+
+  startButton.onclick = () => {
+    clearInterval(mainInterval);
+    resetToMainScreen();
+  };
+}
+
 
 
 
