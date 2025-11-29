@@ -209,7 +209,7 @@ startButton.addEventListener("click", startSession);
 function startSession() {
   // hide existing UI
   document.getElementById("time-container").style.display = "none";
-  document.getElementById("camera-container").style.height = "55%";
+  document.getElementById("bullet-points").style.display = "none";
   document.getElementById("countdown-screen").style.display = "flex";
 
   let countdown = 10;
@@ -257,6 +257,7 @@ function beginMainTimer() {
 function resetToMainScreen() {
   countdownScreen.style.display = "none";
   document.getElementById("time-container").style.display = "flex";
+  document.getElementById("bullet-points").style.display = "flex";
   document.getElementById("camera-container").style.height = "45%";
 
   startButton.textContent = "Start";
