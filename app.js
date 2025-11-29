@@ -251,10 +251,18 @@ function beginMainTimer() {
   // Replace the Start button with STOP
   startButton.textContent = "STOP";
 
-  startButton.onclick = () => {
-    clearInterval(mainInterval);
-    resetToMainScreen();
-  };
+  startButton.removeEventListener("click", startSession);
+  startButton.addEventListener("click", stopSession);
+}
+
+function stopSession() {
+  clearInterval(mainInterval);
+  resetToMainScreen();
+
+  startButton.textContent = "START";
+
+  startButton.removeEventListener("click", stopSession);
+  startButton.addEventListener("click", startSession);
 }
 
 function resetToMainScreen() {
