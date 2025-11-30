@@ -98,6 +98,17 @@ button:disabled {
   align-items: center;
 }
 
+#app-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#app-icon {
+  width: 28px;
+  height: 28px;
+}
+
 #app-title {
   font-family: 'Poppins', sans-serif;
   margin: 0;
