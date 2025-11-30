@@ -1,6 +1,6 @@
 {
   "name": "ReCold",
-  "short_name": "ReCold – Record from Heat to Cold",
+  "short_name": "ReCold",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
