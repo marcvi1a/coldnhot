@@ -7,6 +7,6 @@
   "theme_color": "#000",
   "background_color": "#000",
   "icons": [
-    { "src": "assets/recold.png", "sizes": "720x720", "type": "image/png" }
+    { "src": "assets/favicon.png", "sizes": "720x720", "type": "image/png" }
   ]
 }
