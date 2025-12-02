@@ -285,6 +285,8 @@ function hideMainUI() {
   timeControls.style.pointerEvents = "none";
   timeControls.style.opacity = "0";
   timeCountdown.style.display = "block";
+  saunaButton.style.display = "none";
+  iceButton.style.display = "none";
 }
 
 function showMainUI() {
@@ -292,6 +294,8 @@ function showMainUI() {
   timeControls.style.pointerEvents = "";
   timeControls.style.opacity = "";
   timeCountdown.style.display = "none";
+  saunaButton.style.display = "block";
+  iceButton.style.display = "block";
 }
 
 
