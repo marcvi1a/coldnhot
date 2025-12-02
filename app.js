@@ -231,7 +231,7 @@ function startCountdown() {
   menuControls.style.display = "none";
   startButton.textContent = "STOP";
 
-  let countdown = 5;
+  let countdown = 300;
   timeCountdown.textContent = countdown;
 
   countdownInterval = setInterval(() => {
