@@ -273,13 +273,15 @@ function stopSession() {
 
 function hideMainUI() {
   timeDisplay.style.display = "none";
-  timeControls.style.display = "none";
+  timeControls.style.pointerEvents = "none";
+  timeControls.style.opacity = "0";
   timeCountdown.style.display = "block";
 }
 
 function showMainUI() {
   timeDisplay.style.display = "block";
-  timeControls.style.display = "block";
+  timeControls.style.pointerEvents = "";
+  timeControls.style.opacity = "";
   timeCountdown.style.display = "none";
 }
 
