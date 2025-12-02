@@ -227,8 +227,8 @@ function startCountdown() {
   state = "countdown";
 
   hideMainUI();
-  menuMessage.display = "block";
-  menuControls.display = "none";
+  menuMessage.style.display = "block";
+  menuControls.style.display = "none";
   startButton.textContent = "STOP";
 
   let countdown = 5;
@@ -250,8 +250,8 @@ function startCountdown() {
 function beginMainTimer() {
   state = "running";
 
-  menuMessage.display = "none";
-  menuControls.display = "flex";
+  menuMessage.style.display = "none";
+  menuControls.style.display = "flex";
 
   time = 0;
   const endTime = parseInt(timeSlider.value, 10);
