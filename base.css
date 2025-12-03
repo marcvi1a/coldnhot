@@ -272,47 +272,57 @@ button:disabled {
 }
 
 
-/* FIRE SMOKE EFFECT ON timeCountdown */
+/* FIRE SMOKE EFFECT */
 #time-countdown.smoke-effect {
   position: relative;
   overflow: visible;
+  z-index: 1; /* allow pseudo-elements to stack above */
 }
 
+/* pseudo-elements above the text */
 #time-countdown.smoke-effect::before,
 #time-countdown.smoke-effect::after {
   content: "";
   position: absolute;
+  top: -20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 160%;
-  height: 160%;
+  width: 200%;
+  height: 200%;
+
   pointer-events: none;
-  opacity: 0.25;
+  opacity: 0.32;
+
   background: radial-gradient(
     circle,
     currentColor 0%,
-    transparent 60%
+    transparent 65%
   );
-  animation: smokeRise 2.5s infinite ease-out;
-  filter: blur(25px);
+
+  filter: blur(30px);
+
+  /* KEY: these must be above the countdown text */
+  z-index: 9999;
+
+  animation: smokeRise 3s infinite ease-out;
 }
 
-/* secondary layer for more texture */
+/* lighter secondary smoke layer */
 #time-countdown.smoke-effect::after {
-  opacity: 0.18;
-  animation-duration: 3.3s;
-  animation-delay: 0.4s;
+  opacity: 0.22;
+  animation-duration: 4s;
+  animation-delay: 0.6s;
 }
 
-/* animation */
+/* rising smoke motion */
 @keyframes smokeRise {
   0% {
-    transform: translate(-50%, 20%) scale(0.8);
+    transform: translate(-50%, 10%) scale(0.9);
   }
   50% {
     transform: translate(-50%, -20%) scale(1.1);
   }
   100% {
-    transform: translate(-50%, -60%) scale(1.4);
+    transform: translate(-50%, -60%) scale(1.3);
   }
 }
