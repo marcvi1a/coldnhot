@@ -261,26 +261,28 @@ function beginMainTimer() {
     time++;
     timeCountdown.textContent = formatTime(time);
 
-    const fill = (time / endTime) * 100;  // percentage 0 → 100
+    const mode = getMode();
+    const barColor = mode === "sauna" ? COLOR_SAUNA : COLOR_ICE;
 
-    // update blue fill from left to right
+    const fill = Math.min((time / endTime) * 100, 100);
+
+    // Smooth fill animation using background-size + dynamic gradient color
     timeCountdown.style.background = `
-      linear-gradient(90deg,
-        ${COLOR_ICE} ${fill}%,
-        transparent ${fill}%)
+      linear-gradient(90deg, ${barColor}, ${barColor}) , #f5f5f780
     `;
+    timeCountdown.style.backgroundSize = `${fill}% 100%`;
 
     if (!finishedMark && time >= endTime) {
       finishedMark = true;
 
-      // entire bar becomes blue
-      timeCountdown.style.background = `
-        linear-gradient(90deg,
-          ${COLOR_ICE} 100%,
-          ${COLOR_ICE} 100%)
-      `;
+      // Make fully filled
+      timeCountdown.style.backgroundSize = `100% 100%`;
 
+      // Text turns red (your existing behavior)
       timeCountdown.style.color = "red";
+
+      // Add glow/pulse effect
+      timeCountdown.classList.add("pulse-glow");
     }
   }, 1000);
 }
@@ -295,7 +297,18 @@ function stopSession() {
   startButton.textContent = "START";
   timeCountdown.style.color = "#fff";
 
-  timeCountdown.style.background = `linear-gradient(90deg, ${COLOR_ICE} 0%, transparent 0%)`;
+  timeCountdown.style.backgroundSize = "0% 100%";
+  timeCountdown.style.background = `linear-gradient(90deg, ${COLOR_ICE}, ${COLOR_ICE}) , #f5f5f780`;
+  timeCountdown.classList.remove("pulse-glow");
+
+  const mode = getMode();
+  const barColor = mode === "sauna" ? COLOR_SAUNA : COLOR_ICE;
+
+  timeCountdown.style.background = `
+    linear-gradient(90deg, ${barColor}, ${barColor}) , #f5f5f780
+  `;
+
+  timeCountdown.classList.remove("pulse-glow");
 }
 
 
