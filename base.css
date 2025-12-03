@@ -272,77 +272,69 @@ button:disabled {
 }
 
 
-/* Define the green color for the smoke */
-:root {
-  --smoke-color: #00b300; /* A vibrant green color */
-  --max-rise-height: -50vh; /* Target height: half viewport height */
-}
+/* --- EXPLOSION EFFECT --- */
 
-/* FIRE SMOKE EFFECT */
-#time-countdown.smoke-effect {
+/* Base class for the explosion container */
+#time-countdown.explosion-effect {
+  animation: none; /* Disable smoke effect momentarily */
+  background: #fff !important; /* Flash the background pure white */
   position: relative;
-  overflow: visible;
-  z-index: 1;
-  color: var(--smoke-color); /* Set the text color to the smoke color */
+  overflow: hidden;
 }
 
-/* pseudo-elements above the text */
-#time-countdown.smoke-effect::before,
-#time-countdown.smoke-effect::after {
+/* Explosion pseudo-element (bright flash) */
+#time-countdown.explosion-effect::before {
   content: "";
   position: absolute;
-  /* STARTING POSITION: Place the bottom edge of the smoke element at the top edge of timeCountDown. */
-  /* Since the height of the element is 200% of its container (which is time-countdown),
-     setting top: 0% makes its top-center aligned. We need to push it up further. */
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0); /* Initial translation, but movement is controlled by animation */
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 0, 0, 0) 70%); /* White hot center */
+  transform: translate(-50%, -50%) scale(0.1);
+  filter: blur(10px);
+  opacity: 1;
+  z-index: 10000;
 
-  width: 100%; /* Reduced width for better smoke shape */
-  height: 100px; /* Base height for the pseudo-element, scaled up in animation */
-
-  /* Disable mouse events */
-  pointer-events: none;
-  opacity: 0.5; /* Increased base opacity for visibility */
-
-  /* Use the green color defined in the root */
-  background: radial-gradient(
-    circle,
-    var(--smoke-color) 0%, /* Use green color */
-    transparent 65%
-  );
-
-  filter: blur(15px); /* Less blur for more definition */
-
-  /* KEY: these must be above the countdown text */
-  z-index: 9999;
-
-  animation: smokeRise 5s linear infinite; /* Increased duration, changed to linear for steady rise */
+  animation: countdownExplode 0.5s ease-out forwards;
 }
 
-/* lighter secondary smoke layer */
-#time-countdown.smoke-effect::after {
-  opacity: 0.3;
-  animation-duration: 6s; /* Longer duration for secondary layer */
-  animation-delay: 0.8s;
-  filter: blur(20px);
+/* Secondary Explosion (color pulse) */
+#time-countdown.explosion-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: currentColor; /* Inherits the mode color (Red/Blue) */
+  opacity: 0.5;
+
+  animation: colorPulse 0.5s ease-out forwards;
 }
 
-/* * KEYFRAME ADJUSTMENTS:
-* 1. Start at timeCountDown top (translateY(0)).
-* 2. Rise continuously up to the top limit (max-rise-height = -50vh).
-* 3. Fade out the opacity at the top limit.
-*/
-@keyframes smokeRise {
+
+/* Keyframes for the Explosion */
+@keyframes countdownExplode {
   0% {
-    /* Start at top of countdown, small scale, visible opacity */
-    transform: translate(-50%, 0) scale(0.9);
-    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 1;
   }
-
   100% {
-    /* Rise to half vh above the start point, large scale, fades out */
-    transform: translate(-50%, var(--max-rise-height)) scale(1.8);
-    opacity: 0; /* Smoothly fade out at the top limit */
+    /* Scale far beyond the container size */
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
   }
+}
+
+/* Keyframes for the Color Pulse */
+@keyframes colorPulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
 }

@@ -280,7 +280,7 @@ function beginMainTimer() {
       timeCountdown.style.background = baseColor;
 
       // enable smoke effect
-      timeCountdown.classList.add("smoke-effect");
+      timeCountdown.classList.add("explosion-effect");
     }
   }, 1000);
 }
@@ -293,7 +293,7 @@ function stopSession() {
 
   showMainUI();
   startButton.textContent = "START";
-  timeCountdown.classList.remove("smoke-effect");
+  timeCountdown.classList.remove("explosion-effect");
 
   const baseColor = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE;
 
