@@ -182,7 +182,27 @@ function formatTime(seconds) {
 
 
 
-cameraStart.addEventListener("click", async () => {
+// cameraStart.addEventListener("click", async () => {
+//   try {
+//     const stream = await navigator.mediaDevices.getUserMedia({
+//       video: { facingMode: "user" }
+//     });
+//
+//     camera.srcObject = stream;
+//
+//     timeContainer.style.marginTop = "auto";
+//     cameraStart.style.display = "none";
+//     camera.style.display = "block";
+//     cameraPreview.style.display = "none";
+//
+//   } catch (err) {
+//     alert("Camera permission denied or unavailable.");
+//     console.error(err);
+//   }
+// });
+
+
+async function startCamera() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: "user" }
@@ -196,10 +216,47 @@ cameraStart.addEventListener("click", async () => {
     cameraPreview.style.display = "none";
 
   } catch (err) {
-    alert("Camera permission denied or unavailable.");
-    console.error(err);
+    console.warn("Camera cannot start:", err);
+    restoreCameraUI();
+  }
+}
+
+function restoreCameraUI() {
+  // camera.style.display = "none";
+  cameraStart.style.display = "block";
+  cameraPreview.style.display = "block";
+
+  // stop old stream if it exists
+  if (camera.srcObject) {
+    camera.srcObject.getTracks().forEach(t => t.stop());
+  }
+
+  camera.srcObject = null;
+}
+
+cameraStart.addEventListener("click", startCamera);
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    checkCameraState();
   }
 });
+
+function checkCameraState() {
+  const stream = camera.srcObject;
+
+  if (!stream) {
+    // no camera → restore UI
+    restoreCameraUI();
+    return;
+  }
+
+  const track = stream.getVideoTracks()[0];
+
+  if (!track || track.readyState === "ended") {
+    restoreCameraUI();
+  }
+}
 
 
 timeSlider.addEventListener("input", () => {
