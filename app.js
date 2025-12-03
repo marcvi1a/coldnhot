@@ -278,7 +278,6 @@ function beginMainTimer() {
 
       // solid background
       timeCountdown.style.background = baseColor;
-      timeCountdown.style.color = "red";
 
       // enable smoke effect
       timeCountdown.classList.add("smoke-effect");
@@ -294,7 +293,6 @@ function stopSession() {
 
   showMainUI();
   startButton.textContent = "START";
-  timeCountdown.style.color = "#fff";
   timeCountdown.classList.remove("smoke-effect");
 
   const baseColor = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE;
