@@ -90,6 +90,8 @@ const timeDisplay = document.getElementById("time-display");
 const timeCountdown = document.getElementById("time-countdown");
 const timeControls = document.getElementById("time-controls");
 
+const liveMessages = document.getElementById("live-messages");
+
 const menuControls = document.getElementById("menu-controls");
 const saunaButton = document.getElementById("menu-controls__sauna");
 const iceButton = document.getElementById("menu-controls__ice");

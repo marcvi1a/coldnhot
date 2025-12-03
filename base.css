@@ -169,16 +169,15 @@ button:disabled {
 }
 
 #live-messages {
-  position: relative;
-  width: 100%;
-  margin-bottom: 0.5rem;
-
+  position: absolute;
+  bottom: 25vh; /* sits ABOVE countdown cleanly */
+  right: 1rem;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
   pointer-events: none;
-  z-index: 20;
+  z-index: 200;
 }
 
 /* bubble style */
