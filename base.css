@@ -294,15 +294,15 @@ button:disabled {
   border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
-#menu-controls button:first-child {
+.button-left {
   border-radius: 8px 0 0 8px;
 }
 
-#menu-controls button:last-child {
+.button-right {
   border-radius: 0 8px 8px 0;
 }
 
-.one-button {
+.button-one {
   border-radius: 8px;
 }
 
