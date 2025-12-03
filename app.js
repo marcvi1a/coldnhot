@@ -47,6 +47,26 @@ async function applyLanguage() {
 }
 
 
+const TIMED_MESSAGES = {
+  sauna: {
+    10: "Solid start!",
+    20: "Heat kicking in.",
+    40: "Focus on breathing.",
+    60: "You’re getting stronger.",
+    90: "Stay with it.",
+    120: "Great endurance!",
+  },
+  ice: {
+    10: "Solid start!",
+    20: "Relax your shoulders.",
+    30: "Slow breathing helps.",
+    45: "Mind over body.",
+    60: "You're doing amazing.",
+    90: "Stay calm, stay still.",
+  }
+};
+
+
 const COLOR_SAUNA = "#ef0241";
 const COLOR_ICE = "#378de2";
 
@@ -211,6 +231,20 @@ iceButton.addEventListener("click", () => {
 });
 
 
+function pushLiveMessage(text) {
+  const msg = document.createElement("div");
+  msg.className = "live-message";
+  msg.textContent = text;
+
+  liveMessages.appendChild(msg);
+
+  // Limit stacking for UI safety
+  if (liveMessages.children.length > 10) {
+    liveMessages.removeChild(liveMessages.firstChild);
+  }
+}
+
+
 let state = "idle"; // idle | countdown | running
 let countdownInterval;
 let mainInterval;
@@ -261,6 +295,12 @@ function beginMainTimer() {
     time++;
     timeCountdown.textContent = formatTime(time);
 
+    // Chat messages at exact times
+    const mode = getMode();
+    if (TIMED_MESSAGES[mode][time]) {
+      pushLiveMessage(TIMED_MESSAGES[mode][time]);
+    }
+
     const fill = (time / endTime) * 100;  // percentage 0 → 100
     const baseColor = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE;
 
@@ -286,6 +326,8 @@ function stopSession() {
 
   clearInterval(countdownInterval);
   clearInterval(mainInterval);
+
+  liveMessages.innerHTML = "";  // reset messages
 
   showMainUI();
   startButton.textContent = "START";
