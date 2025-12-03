@@ -267,7 +267,7 @@ function beginMainTimer() {
     // update blue fill from left to right
     timeCountdown.style.background = `
       linear-gradient(90deg,
-        ${color50(baseColor)} ${fill}%,
+        ${color25(baseColor)} ${fill}%,
         #f5f5f780 ${fill}%)
     `;
 
@@ -298,16 +298,16 @@ function stopSession() {
 
   timeCountdown.style.background = `
     linear-gradient(90deg,
-      ${color50(baseColor)} 0%,
+      ${color25(baseColor)} 0%,
       #f5f5f780 0%)
   `;
 }
 
-function color50(hex) {
+function color25(hex) {
   const r = parseInt(hex.slice(1,3), 16);
   const g = parseInt(hex.slice(3,5), 16);
   const b = parseInt(hex.slice(5,7), 16);
-  return `rgba(${r}, ${g}, ${b}, 0.5)`;
+  return `rgba(${r}, ${g}, ${b}, 0.25)`;
 }
 
 
