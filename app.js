@@ -98,13 +98,6 @@ const iceButton = document.getElementById("menu-controls__ice");
 const startButton = document.getElementById("menu-controls__start");
 const menuMessage = document.getElementById("menu-message");
 
-const menuButtons = menuControls.children;
-if (menuButtons.length === 1) {
-  menuControls.classList.add('one-button');
-} else {
-  menuControls.classList.remove('one-button');
-}
-
 
 
 
@@ -291,6 +284,7 @@ function startCountdown() {
   menuMessage.style.display = "flex";
   menuControls.style.display = "none";
   startButton.textContent = "STOP";
+  menuControls.classList.add('one-button');
 
   let countdown = 3;
   timeCountdown.textContent = countdown;
@@ -358,6 +352,7 @@ function stopSession() {
 
   showMainUI();
   startButton.textContent = "START";
+  menuControls.classList.remove('one-button');
 
   const baseColor = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE;
 
