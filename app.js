@@ -276,11 +276,8 @@ function beginMainTimer() {
     if (!finishedMark && time >= endTime) {
       finishedMark = true;
 
-      // solid background
       timeCountdown.style.background = baseColor;
-
-      // enable smoke effect
-      timeCountdown.classList.add("explosion-effect");
+      timeCountdown.style.color = "red";
     }
   }, 1000);
 }
@@ -293,7 +290,7 @@ function stopSession() {
 
   showMainUI();
   startButton.textContent = "START";
-  timeCountdown.classList.remove("explosion-effect");
+  timeCountdown.style.color = "#fff";
 
   const baseColor = getMode() === "sauna" ? COLOR_SAUNA : COLOR_ICE;
 
