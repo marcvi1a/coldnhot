@@ -50,7 +50,7 @@ async function applyLanguage() {
 const TIMED_MESSAGES = {
   sauna: {
     3: "Solid start!",
-    4: "Heat kicking in",
+    4: "Heat kicking in.",
     5: "Focus on breathing",
     6: "You’re getting stronger",
     9: "Stay with it",
@@ -58,7 +58,7 @@ const TIMED_MESSAGES = {
   },
   ice: {
     3: "Solid start!",
-    4: "Relax your shoulders",
+    4: "Relax your shoulders.",
     5: "Slow breathing helps",
     6: "Mind over body",
     9: "You're doing amazing",
@@ -201,6 +201,26 @@ function formatTime(seconds) {
 //   }
 // });
 
+let lastFrameTime = 0;
+
+camera.addEventListener("playing", () => {
+  requestAnimationFrame(checkFrame);
+});
+
+function checkFrame() {
+  const current = camera.currentTime;
+
+  if (current !== lastFrameTime) {
+    lastFrameTime = current;
+  } else {
+    // No frame update → camera frozen
+    restoreCameraUI();
+    return; // stop watching
+  }
+
+  requestAnimationFrame(checkFrame);
+}
+
 
 async function startCamera() {
   try {
@@ -210,7 +230,6 @@ async function startCamera() {
 
     camera.srcObject = stream;
 
-    timeContainer.style.marginTop = "auto";
     cameraStart.style.display = "none";
     camera.style.display = "block";
     cameraPreview.style.display = "none";
@@ -222,11 +241,11 @@ async function startCamera() {
 }
 
 function restoreCameraUI() {
-  // camera.style.display = "none";
-  cameraStart.style.display = "block";
+  camera.style.display = "none";
   cameraPreview.style.display = "block";
+  cameraStart.style.display = "block";
 
-  // stop old stream if it exists
+  // stop old stream if exists
   if (camera.srcObject) {
     camera.srcObject.getTracks().forEach(t => t.stop());
   }
@@ -257,6 +276,15 @@ function checkCameraState() {
     restoreCameraUI();
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 timeSlider.addEventListener("input", () => {
