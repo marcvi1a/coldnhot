@@ -290,6 +290,20 @@ button:disabled {
 #menu-controls button {
   flex: 1;
   min-width: 0;
+
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+#menu-controls button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+#menu-controls button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+#menu-controls.one-button button {
+  border-radius: 8px;
 }
 
 #menu-controls__sauna, #menu-controls__ice {

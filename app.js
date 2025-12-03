@@ -256,7 +256,7 @@ function pushLiveMessage(text) {
       msg.remove();
     }, 400);
 
-  }, 3000);
+  }, 4000);
 
   // Safety: avoid infinite stacking
   if (liveMessages.children.length > 10) {
